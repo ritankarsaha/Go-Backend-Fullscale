@@ -85,3 +85,26 @@ func GetUser() gin.HandlerFunc{
 	}
 }
 
+func SignUp() gin.HandlerFunc{
+
+	return func (c *gin.Context){
+		var ctx,cancel = context.WithTimeout(context.Background(),100*time.Second)
+		var user models.User
+
+
+		//converting the json data being received into data which can be read by golang.
+		if err := c.BindJSON(&user); err != nil{
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		// validating the user model based on the user struct
+		validationErr := validate.Struct(user)
+		if validationErr != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": validationErr.Error()})
+			return
+		}
+        
+		
+	}
+}

@@ -15,9 +15,9 @@ type User struct{
 	Email						*string								`json:"email" validate:"email,required"`
 	Avatar						*string								`json:"avatar"`
 	Phone						*string								`json:"phone" validate:"required"`
-	Token 						*string								`json:"refresh_token"`
+	Token 						*string								`json:"token"`
 	Created_at					time.Time							`json:"created_at"`
 	Updated_at					time.Time							`json:"updated_at"`
 	User_id						string								`json:"user_id"`
-	
+	RefreshToken                *string                             `json:"refresh_token" bson:"refresh_token"` 
 }
